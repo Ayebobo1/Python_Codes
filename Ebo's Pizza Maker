@@ -1,0 +1,79 @@
+Learned through LinkedIn > https://www.linkedin.com/learning/python-for-students/python-for-students?autoplay=true&u=0
+
+PYTHON CODE BELOW (With Comments! "#")
+
+
+# Make sure to import the correct turtle module
+import turtle
+
+# These are the constants we don't want to change
+BACKGROUND_COLOR = "#9EC388"
+CRUST_COLOR = "#ECA84F"
+SAUCE_COLOR = "#AD0509"
+CHEESE_COLOR = "#FBC70F"
+# X & Y coordinates where each of the pepperoni are going to be drawn
+PEPPERONI_LOCATIONS = [
+    [-70, 105],
+    [-85, 175],
+    [-25, 50],
+    [-15, 100],
+    [-25, 150],
+    [-30, 205],
+    [15, 50],
+    [20, 120],
+    [20, 200],
+    [60, 156],
+    [71, 215],
+    [80, 90],
+    [95, 150]
+
+]
+
+# Set the tile and background of the pizza
+screen = turtle.Screen()
+screen.bgcolor(BACKGROUND_COLOR)
+screen.title("Ebo's Pizza")
+
+# Create the pen using the my turle function, pen size and shape of the actual pen is a circle
+my_turtle = turtle.Turtle()
+my_turtle.pensize(5)
+my_turtle.shape("circle")
+
+# Extract the code for draw a circle into its own function
+def draw_circle(radius, line_color, fill_color):
+    my_turtle.color(line_color)
+    my_turtle.fillcolor(fill_color)
+    my_turtle.begin_fill()
+    my_turtle.circle(radius)
+    my_turtle.end_fill()
+
+# moves the turtle without drawing anything on the screen
+def move_turtle(x, y):
+    my_turtle.up()
+    my_turtle.goto(x, y)
+    my_turtle.down()
+
+# Parameters used for the def functions
+draw_circle(150, CRUST_COLOR, CRUST_COLOR)
+move_turtle(0, 25)
+draw_circle(125, SAUCE_COLOR, CHEESE_COLOR)
+
+# Drawing the pepperoni using a for loop. Ends up being a lists of lists
+for location in PEPPERONI_LOCATIONS:
+    move_turtle(location[0], location[1])
+    draw_circle(10, SAUCE_COLOR, SAUCE_COLOR)
+
+# Parameters for the for loop
+move_turtle(0, 150)
+my_turtle.color(BACKGROUND_COLOR)
+
+# Creates the pizza slices by moving the turtle while picking up and putting down the pen
+for x in range(0, 8):
+    my_turtle.pendown()
+    my_turtle.left(45)
+    my_turtle.forward(150)
+    my_turtle.penup()
+    my_turtle.backward(150)
+
+# Finished the code
+turtle.done()
